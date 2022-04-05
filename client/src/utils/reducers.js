@@ -22,3 +22,5 @@ export const reducer = (state, action) => {
 };
 // adding this code to the reducers.js file imports the possible actions we can perform and creates a function called reducer()
 // when the function executes, we pass the value of the action.type argument into a switch statement and compare it to our possible actions eg. UPDATE_PRODUCTS
+// if it's the action type, we return a new object with a copy of the state argument using the spread ... operator and then set the products key to a value of a new array with the action.products value spread across it
+// if it's not the action type, we make no change to state and return it as is
