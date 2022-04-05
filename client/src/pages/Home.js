@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ProductList from "../components/ProductList";
 import CategoryMenu from "../components/CategoryMenu";
 
+// The Home page component keeps track of the current category we are viewing.
+
 const Home = () => {
   const [currentCategory, setCategory] = useState("");
 

@@ -5,6 +5,8 @@ import ProductItem from '../ProductItem';
 import { QUERY_PRODUCTS } from '../../utils/queries';
 import spinner from '../../assets/spinner.gif';
 
+// The ProductList component displays products from an Apollo query
+
 function ProductList({ currentCategory }) {
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
