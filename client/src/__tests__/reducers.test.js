@@ -42,4 +42,14 @@ test('UPDATE_CATEGORIES', () => {
     // The result of the reducer() should show that the length of our updated categories array will be 2, while the initial categories array should still be 1. This indicates that we didn't affect our original state values at all and simply used it to create a new version of it.
     expect(newState.categories.length).toBe(2);
     expect(initialState.categories.length).toBe(1);
-})
+});
+
+test('UPDATE_CURRENT_CATEGORY', () => {
+    let newState = reducer(initialState, {
+        type: UPDATE_CURRENT_CATEGORY,
+        currentCategory: '2'
+    });
+
+    expect(newState.currentCategory).toBe('2');
+    expect(initialState.currentCategory).toBe('1');
+});
