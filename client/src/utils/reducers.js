@@ -1,5 +1,8 @@
 // A reducer is a function that updates state by returning a new state object and never alters the original state object.
 
+// an alternative to useState - The useReducer() Hook is meant specifically for managing a greater level of state
+import { useReducer } from 'react';
+
 import {
     UPDATE_PRODUCTS,
     UPDATE_CATEGORIES,
@@ -36,3 +39,8 @@ export const reducer = (state, action) => {
 // when the function executes, we pass the value of the action.type argument into a switch statement and compare it to our possible actions eg. UPDATE_PRODUCTS
 // if it's the action type, we return a new object with a copy of the state argument using the spread ... operator and then set the products key to a value of a new array with the action.products value spread across it
 // if it's not the action type, we make no change to state and return it as is
+
+// this function will be used to help initialize our global state object and then provide us with the functionality for updating that state by automatically running it through our custom reducer() function
+export function useProductReducer(initialState) {
+    return useReducer(reducer, initialState);
+}
