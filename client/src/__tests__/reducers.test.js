@@ -44,6 +44,8 @@ test('UPDATE_CATEGORIES', () => {
     expect(initialState.categories.length).toBe(1);
 });
 
+// updating the state of currentCategory to a new string value instead of an array
+// when the test runs, compare values between newState and initialState to confirm that initialState has remained the same
 test('UPDATE_CURRENT_CATEGORY', () => {
     let newState = reducer(initialState, {
         type: UPDATE_CURRENT_CATEGORY,
