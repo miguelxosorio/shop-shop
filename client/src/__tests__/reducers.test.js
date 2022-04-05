@@ -30,12 +30,16 @@ test('UPDATE_PRODUCTS', () => {
     expect(initialState.products.length).toBe(0);
 });
 
+// test will be used to test how we can update the categories array
+// when we execute the reducer() we still pass in the initialState
+// execute the UPDATE_CATEGORIES action and update category list to be a new array of categores
 test('UPDATE_CATEGORIES', () => {
     let newState = reducer(initialState, {
         type: UPDATE_CATEGORIES,
         categories: [{},{}]
     });
 
+    // The result of the reducer() should show that the length of our updated categories array will be 2, while the initial categories array should still be 1. This indicates that we didn't affect our original state values at all and simply used it to create a new version of it.
     expect(newState.categories.length).toBe(2);
     expect(initialState.categories.length).toBe(1);
 })
