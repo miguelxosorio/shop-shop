@@ -37,3 +37,5 @@ const useStoreContext = () => {
 };
 // When we execute this function from within a component, we will receive the [state, dispatch] data our StoreProvider provider manages for us
 // This means that any component that has access to our StoreProvider component can use any data in our global state container or update it using the dispatch function
+
+export { StoreProvider, useStoreContext };

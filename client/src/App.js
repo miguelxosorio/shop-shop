@@ -58,5 +58,6 @@ function App() {
     </ApolloProvider>
   );
 }
+// <StoreProvider> wraps all of the components. All the components between those JSX tags are considered the children of <StoreProvider>
 
 export default App;
