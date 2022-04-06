@@ -28,3 +28,12 @@ const StoreProvider = ({ value = [], ...props }) => {
 // because that wraps it around the useReducer() Hook from React, every time we run this useProductReducer() func, we receive the ff items in return
 // state - most up to date version of our global state object
 // dispatch - method we execute to update our state, specifically looking for an action object passed in as its argument
+
+// After the useProductReducer() completes and provides us with the new state and function to update state (e.g., dispatch), we then return the StoreContext's <Provider> component with our state object and dispatch the function provided as data for the value prop.
+
+// custom React Hook
+const useStoreContext = () => {
+    return useContext(StoreContext);
+};
+// When we execute this function from within a component, we will receive the [state, dispatch] data our StoreProvider provider manages for us
+// This means that any component that has access to our StoreProvider component can use any data in our global state container or update it using the dispatch function
