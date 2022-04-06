@@ -14,6 +14,8 @@ import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
+// importing global state - making it available to all components
+import { storeProvider } from './utils/GlobalState';
 import OrderHistory from './pages/OrderHistory';
 
 const httpLink = createHttpLink({
