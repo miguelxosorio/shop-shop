@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from './utils/actions';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
+  useQuery,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
@@ -15,8 +17,9 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
 // importing global state - making it available to all components
-import { StoreProvider } from './utils/GlobalState';
+import { StoreProvider, useStoreContext } from './utils/GlobalState';
 import OrderHistory from './pages/OrderHistory';
+import { QUERY_CATEGORIES } from './utils/queries';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -38,6 +41,15 @@ const client = new ApolloClient({
 });
 
 function App() {
+
+  // we'll query our category data, store it into the global state object, and then use the category data from the global state object to use it in the UI
+  const [state, dispatch] = useStoreContext();
+
+  const { categories } = state;
+
+  const { data: categoryData } = useQuery(QUERY_CATEGORIES);
+
+
   return (
     <ApolloProvider client={client}>
       <Router>
