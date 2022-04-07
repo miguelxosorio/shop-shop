@@ -146,3 +146,16 @@ test('UPDATE_CART_QUANTITY', () => {
 
     expect(initialState.cartOpen).toBe(false);
 });
+
+// This test simply expects the cart to be empty (and closed) after the CLEAR_CART action is called
+test('CLEAR_CART', () => {
+    let newState = reducer(initialState, {
+        type: CLEAR_CART
+    });
+
+    expect(newState.cartOpen).toBe(false);
+
+    expect(newState.cart.length).toBe(0);
+
+    expect(initialState.cart.length).toBe(2);
+});
