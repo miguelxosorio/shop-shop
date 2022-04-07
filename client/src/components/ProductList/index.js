@@ -32,6 +32,10 @@ function ProductList() {
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
+  // then implement the useEffect() hook in order to wait for useQuery() response to come in.
+  // Once data object returned from useQuery() goes from undefined to having an actual value, we execute our dispatch() function
+  // instructing our reducer function that it's the UPDATE_PRODUCTS action and it should save the array of product data to our global store
+  // When that's done, useStoreContext() executes again, giving the product data needed to display products to the page
   useEffect(() => {
     if(data) {
       dispatch({
