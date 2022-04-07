@@ -51,6 +51,20 @@ export const reducer = (state, action) => {
                 cart: [...state.cart, ...action.products],
             };
         
+        case REMOVE_FROM_CART:
+
+            // use of the filter() method that only keeps the items that don't match the provided _id property
+            let newState = state.cart.filter(product => {
+                return product._id !== action._id;
+            });
+
+            return {
+                ...state,
+                // we also check the length of the array to set cartOpen to false when the array is empty
+                cartOpen: newState.length > 0,
+                cart: newState    
+            }
+        
         // if it's none of these actions, do not update state at all and keep things the same!
         default:
             return state;
