@@ -6,7 +6,13 @@ import { useReducer } from 'react';
 import {
     UPDATE_PRODUCTS,
     UPDATE_CATEGORIES,
-    UPDATE_CURRENT_CATEGORY
+    UPDATE_CURRENT_CATEGORY,
+    ADD_TO_CART,
+    ADD_MULTIPLE_TO_CART,
+    REMOVE_FROM_CART,
+    UPDATE_CART_QUANTITY,
+    CLEAR_CART,
+    TOGGLE_CART
 } from './actions';
 
 export const reducer = (state, action) => {
@@ -29,7 +35,16 @@ export const reducer = (state, action) => {
                 ...state,
                 currentCategory: action.currentCategory
             };
-
+        
+        case ADD_TO_CART:
+            return {
+                // include the ...state operator to preserve everything else on state
+                ...state,
+                // set cartOpen to true so that users can immediately view the cart with the newly added item, if it's not already open
+                cartOpen: true,
+                cart: [...state.cart, action.product]
+            };
+        
         // if it's none of these actions, do not update state at all and keep things the same!
         default:
             return state;
