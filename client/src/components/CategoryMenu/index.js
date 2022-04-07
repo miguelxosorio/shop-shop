@@ -35,6 +35,7 @@ useEffect(() => {
       type: UPDATE_CURRENT_CATEGORY,
       currentCategory: id
     });
+  // when we click one of those categories, we save that category's _id value to the global state 
   };
 
   return (
