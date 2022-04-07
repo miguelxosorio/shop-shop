@@ -5,12 +5,14 @@ import CategoryMenu from "../components/CategoryMenu";
 // The Home page component keeps track of the current category we are viewing.
 
 const Home = () => {
-  const [currentCategory, setCategory] = useState("");
+  // const [currentCategory, setCategory] = useState("");
 
   return (
     <div className="container">
-      <CategoryMenu setCategory={setCategory} />
-      <ProductList currentCategory={currentCategory} />
+      <CategoryMenu /> 
+      {/* <CategoryMenu setCategory={setCategory} /> */}
+      <ProductList />
+      {/* <ProductList currentCategory={currentCategory} /> */}
     </div>
   );
 };
