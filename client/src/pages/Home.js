@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import ProductList from "../components/ProductList";
 import CategoryMenu from "../components/CategoryMenu";
+import Cart from '../components/Cart';
 
 // The Home page component keeps track of the current category we are viewing.
 
@@ -13,6 +14,7 @@ const Home = () => {
       {/* <CategoryMenu setCategory={setCategory} /> */}
       <ProductList />
       {/* <ProductList currentCategory={currentCategory} /> */}
+      <Cart />
     </div>
   );
 };
