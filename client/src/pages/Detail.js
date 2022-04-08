@@ -12,6 +12,7 @@ import {
 } from '../utils/actions';
 import spinner from '../assets/spinner.gif';
 import Cart from '../components/Cart';
+import { idbPromise } from '../utils/helpers';
 
 function Detail() {
   // const { id } = useParams();
@@ -40,15 +41,29 @@ function Detail() {
   // this hook has to check for a couple of things: 1. if there's data in our global state's products array
   // if there is, we use it to figure out which product is the current one that we want to display - matching _id value grabbed from useParams() Hook.
   useEffect(() => {
+    // already in global store
     if(products.length) {
       setCurrentProduct(products.find(product => product._id === id));
+      
+      // retrieved from server
     } else if(data) {
       dispatch({
         type: UPDATE_PRODUCTS,
         products: data.products
       });
+
+      data.products.forEach((product) => {
+        idbPromise('products', 'put', product);
+      })
+    } else if(!loading) {
+      idbPromise('products', 'get').then((indexedProducts) => {
+        dispatch({
+          type: UPDATE_PRODUCTS,
+          products: indexedProducts
+        })
+      })
     }
-  }, [products, data, dispatch, id]);
+  }, [products, data, loading, dispatch, id]);
 
   const addToCart = () => {
    const itemInCart = cart.find((cartItem) => cartItem._id === id);
