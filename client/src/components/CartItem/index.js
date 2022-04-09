@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
+import { idbPromise } from "../../utils/helpers";
 
 // This component currently gets all of its data as props passed down from Cart
 // CartItem will also update the global state to adjust item quantities
@@ -11,8 +12,9 @@ const CartItem = ({ item }) => {
   const removeFromCart = item => {
     dispatch({
       type: REMOVE_FROM_CART,
-      _id: item._id,
+      _id: item._id
     });
+    idbPromise('cart', 'delete', { ...item });
   };
 
   // Anytime an <input> element's value changes, an onChange event will occur
@@ -26,6 +28,8 @@ const CartItem = ({ item }) => {
         type: REMOVE_FROM_CART,
         _id: item._id,
       });
+      idbPromise('cart', 'delete', { ...item });
+
     // Otherwise, we'll call the UPDATE_CART_QUANTITY action
     } else {
       dispatch({
@@ -33,6 +37,8 @@ const CartItem = ({ item }) => {
         _id: item._id,
         purchaseQuantity: parseInt(value),
       });
+
+      idbPromise('cart', 'put', { ...item, purchaseQuantity: parseInt(value) });
     }
   };
 
