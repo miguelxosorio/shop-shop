@@ -30,6 +30,10 @@ const typeDefs = gql`
     orders: [Order]
   }
 
+  type Checkout {
+    session: ID
+  }
+
   type Auth {
     token: ID
     user: User
@@ -41,6 +45,8 @@ const typeDefs = gql`
     product(_id: ID!): Product
     user: User
     order(_id: ID!): Order
+    # we've specified that checkout() requires an array of product IDs
+    checkout(products: [ID]!): Checkout
   }
 
   type Mutation {
